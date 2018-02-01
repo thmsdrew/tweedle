@@ -2,6 +2,7 @@ from components.ai import BasicMonster
 from components.fighter import Fighter
 from entity import Entity
 from random import randint
+from render_functions import RenderOrder
 from tdl.map import Map
 
 class GameMap(Map):
@@ -53,14 +54,14 @@ def place_entities(room, entities, max_monsters_per_room, colors):
                 ai_component = BasicMonster()
                 fighter_component = Fighter(hp=10, defense=0, power=3)
                 monster = Entity(x, y, 'o', colors.get('desaturated_green'),
-                                 'Orc', blocks=True, fighter=fighter_component, 
-                                 ai=ai_component)
+                                 'Orc', blocks=True, render_order=RenderOrder.ACTOR, 
+                                 fighter=fighter_component, ai=ai_component)
             else:
                 ai_component = BasicMonster()
                 fighter_component = Fighter(hp=16, defense=1, power=4)
                 monster = Entity(x, y, 'T', colors.get('darker_green'), 'Troll',
-                                 blocks=True, fighter=fighter_component,
-                                 ai=ai_component)
+                                 blocks=True, render_order=RenderOrder.ACTOR,
+                                 fighter=fighter_component, ai=ai_component)
             
             entities.append(monster)
 
